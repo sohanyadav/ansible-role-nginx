@@ -1,0 +1,16 @@
+---
+- name: Install the nginx package
+  apt:
+     name: nginx
+     state: present
+     update_cache: yes
+  tags:
+     - nginx
+
+- name: reload systemd
+  command: systemctl daemon-reload
+  notify:
+     - restart nginx
+  tags:
+     - nginx
+     - restart-nginx
